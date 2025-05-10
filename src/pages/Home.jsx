@@ -58,6 +58,8 @@ function Home() {
   const handleTabNavigation = (item) => {
     if (item.id === 'inventory') {
       navigate('/inventory');
+    } else if (item.id === 'production') {
+      navigate('/production');
     } else {
       handleTabChange(item.id);
     }
@@ -99,7 +101,7 @@ function Home() {
               item.id === 'inventory' ? (
                 <Link
                   key={item.id}
-                  to="/inventory"
+                  to={`/${item.id}`}
                   className={`flex flex-col items-center gap-1 px-4 py-3 transition-colors ${
                     activeTab === item.id
                       ? 'text-primary border-b-2 border-primary font-medium'
@@ -110,6 +112,19 @@ function Home() {
                   <span className="text-xs">{item.name}</span>
                 </Link>
               ) : (
+                item.id === 'production' ? (
+                  <Link
+                    key={item.id}
+                    to="/production"
+                    className={`flex flex-col items-center gap-1 px-4 py-3 transition-colors ${
+                      activeTab === item.id
+                        ? 'text-primary border-b-2 border-primary font-medium'
+                        : 'text-surface-600 dark:text-surface-300'
+                    }`}
+                  >
+                    <Icon className="w-5 h-5" />
+                    <span className="text-xs">{item.name}</span>
+                  </Link>) : (
                 <button
                   key={item.id}
                   onClick={() => handleTabChange(item.id)}
@@ -122,7 +137,7 @@ function Home() {
                   <Icon className="w-5 h-5" />
                   <span className="text-xs">{item.name}</span>
                 </button>
-              )
+              ))
             );
           })}
         </div>

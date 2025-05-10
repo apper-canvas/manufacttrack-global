@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { format } from 'date-fns';
 import getIcon from '../utils/iconUtils';
 import ProductionOrderForm from '../components/ProductionOrderForm';
+import { getProductionOrders, saveProductionOrders } from '../services/productionService';
 import ProductionStatusBadge from '../components/ProductionStatusBadge';
 
 function Production() {
@@ -26,12 +27,17 @@ function Production() {
 
   // Load production orders from localStorage
   useEffect(() => {
-    const storedOrders = localStorage.getItem('productionOrders');
+    setIsLoading(true);
     
-    setTimeout(() => {
-      if (storedOrders) {
+    const loadOrders = async () => {
+      const orders = await getProductionOrders();
+      setProductionOrders(orders);
+      setIsLoading(false);
         setProductionOrders(JSON.parse(storedOrders));
-      }
+    
+    loadOrders();
+  }, []);
+
       setIsLoading(false);
     }, 500); // Simulate loading for demo purposes
   }, []);
@@ -43,7 +49,10 @@ function Production() {
     }
   }, [productionOrders, isLoading]);
 
-  // Add a new production order
+    const updatedOrders = [...productionOrders, newOrder];
+    setProductionOrders(updatedOrders);
+    saveProductionOrders(updatedOrders);
+
   const handleAddOrder = (orderData) => {
     const newOrder = {
       id: Date.now().toString(),
@@ -69,8 +78,10 @@ function Production() {
           } 
         : order
     );
-    
+
     setProductionOrders(updatedOrders);
+    saveProductionOrders(updatedOrders);
+
     setEditingOrder(null);
     toast.success('Production order updated successfully!');
   };
@@ -79,7 +90,10 @@ function Production() {
   const handleDeleteOrder = (id) => {
     if (window.confirm('Are you sure you want to delete this production order?')) {
       const updatedOrders = productionOrders.filter(order => order.id !== id);
+      
       setProductionOrders(updatedOrders);
+      saveProductionOrders(updatedOrders);
+
       toast.info('Production order deleted');
     }
   };
