@@ -8,12 +8,10 @@ const UsersIcon = getIcon('Users');
 import * as workforceService from '../services/workforceService';
 
 const Workforce = () => {
-const Workforce = () => {
   const [employees, setEmployees] = useState([]);
   const [filteredEmployees, setFilteredEmployees] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const BarChart2Icon = getIcon('BarChart2');
-const BarChart2Icon = getIcon('BarChart2');
   const [editingEmployee, setEditingEmployee] = useState(null);
   const [filterDepartment, setFilterDepartment] = useState('all');
   const [filterStatus, setFilterStatus] = useState('all');
