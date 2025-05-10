@@ -60,6 +60,8 @@ function Home() {
       navigate('/inventory');
     } else if (item.id === 'production') {
       navigate('/production');
+    } else if (item.id === 'workforce') {
+      navigate('/workforce');
     } else {
       handleTabChange(item.id);
     }
@@ -123,6 +125,19 @@ function Home() {
                     }`}
                   >
                     <Icon className="w-5 h-5" />
+                  </Link>) : (
+                item.id === 'workforce' ? (
+                  <Link
+                    key={item.id}
+                    to="/workforce"
+                    className={`flex flex-col items-center gap-1 px-4 py-3 transition-colors ${
+                      activeTab === item.id
+                        ? 'text-primary border-b-2 border-primary font-medium'
+                        : 'text-surface-600 dark:text-surface-300'
+                    }`}
+                  >
+                    <Icon className="w-5 h-5" />
+                    <span className="text-xs">{item.name}</span>
                     <span className="text-xs">{item.name}</span>
                   </Link>) : (
                 <button

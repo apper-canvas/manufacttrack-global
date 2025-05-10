@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Inventory from './pages/Inventory';
 import Production from './pages/Production';
+import Workforce from './pages/Workforce';
 
 function App() {
   const [darkMode, setDarkMode] = useState(
@@ -69,6 +70,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/inventory" element={<Inventory />} />
             <Route path="/production" element={<Production />} />
+            <Route path="/workforce" element={<Workforce />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
