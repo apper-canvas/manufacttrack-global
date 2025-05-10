@@ -394,5 +394,4 @@ const Workforce = () => {
     </div>
   );
 };
-
 export default Workforce;
