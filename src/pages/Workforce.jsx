@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'react-toastify';
 import { format } from 'date-fns';
 import getIcon from '../utils/iconUtils';
-const UsersIcon = getIcon('Users');
 import * as workforceService from '../services/workforceService';
 
 const Workforce = () => {
@@ -115,7 +114,9 @@ const Workforce = () => {
         toast.success('Employee removed successfully');
       } catch (error) {
         console.error('Error deleting employee:', error);
+        toast.error('Failed to delete employee');
       }
+    }
   };
 
   const handleExpandEmployee = (id) => {
@@ -393,5 +394,6 @@ const Workforce = () => {
       </AnimatePresence>
     </div>
   );
-};
+}
+
 export default Workforce;
