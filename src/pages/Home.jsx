@@ -65,25 +65,28 @@ function Home() {
     <div className="flex flex-col md:flex-row h-[calc(100vh-116px)]">
       {/* Sidebar navigation - hidden on mobile, visible on md screens */}
       <aside className="hidden md:flex flex-col w-64 bg-white dark:bg-surface-800 border-r border-surface-200 dark:border-surface-700 p-4">
-        <div className="space-y-1">
+        <div className="space-y-2 sticky top-20">
           {navItems.map((item) => {
             const Icon = item.icon;
             return (
               <button
                 key={item.id}
-                onClick={() => item.id === 'inventory' ? null : handleTabChange(item.id)}
-          <div className="space-y-2 sticky top-20">
-                  activeTab === item.id ? 'bg-primary text-white font-medium' : 'text-surface-600 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-700'
-                }`}
-              >
-                <button
-                  key={item.id}
-                  onClick={() => handleTabNavigation(item)}
-                  className={
-                    activeTab === item.id
-                      ? 'bg-primary text-white font-medium w-full flex items-center gap-3 p-2 rounded-lg transition-colors'
-                      : 'text-surface-600 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-700 w-full flex items-center gap-3 p-2 rounded-lg transition-colors'
+                onClick={() => handleTabNavigation(item)}
+                className={`
+                  w-full flex items-center gap-3 p-2 rounded-lg transition-colors
+                  ${activeTab === item.id 
+                    ? 'bg-primary text-white font-medium' 
+                    : 'text-surface-600 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-700'
                   }
+                `}
+              >
+                <Icon className="w-5 h-5" />
+                <span>{item.name}</span>
+              </button>
+            );
+          })}
+        </div>
+      </aside>
 
       {/* Mobile navigation - visible on mobile, hidden on md screens */}
       <div className="md:hidden overflow-x-auto scrollbar-hide bg-white dark:bg-surface-800 border-b border-surface-200 dark:border-surface-700">
