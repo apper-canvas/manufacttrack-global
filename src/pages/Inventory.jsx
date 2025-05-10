@@ -9,6 +9,7 @@ import {
   addInventoryItem, 
   addInventoryMovement 
 } from '../services/inventoryService';
+import { Link } from 'react-router-dom';
 
 function Inventory() {
   // State for inventory data
@@ -59,6 +60,7 @@ function Inventory() {
   const ClipboardIcon = getIcon('Clipboard');
   const HistoryIcon = getIcon('History');
   const WarehouseIcon = getIcon('Warehouse');
+  const HomeIcon = getIcon('Home');
   const AlertTriangleIcon = getIcon('AlertTriangle');
   const EditIcon = getIcon('Edit');
   const CheckIcon = getIcon('Check');
@@ -315,7 +317,7 @@ function Inventory() {
     <div className="p-4 md:p-6 bg-surface-50 dark:bg-surface-900 min-h-screen">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
-          <div>
+          <div className="flex items-start gap-4">
             <h1 className="text-2xl md:text-3xl font-bold text-surface-900 dark:text-white flex items-center gap-2">
               <BoxIcon className="w-7 h-7 text-primary" />
               <span>Inventory Management</span>
@@ -323,6 +325,13 @@ function Inventory() {
             <p className="text-surface-600 dark:text-surface-400 mt-1">
               Track and manage your inventory items and stock levels
             </p>
+            <Link
+              to="/"
+              className="flex items-center gap-2 px-3 py-2 bg-white dark:bg-surface-800 border border-surface-200 dark:border-surface-700 rounded-lg text-surface-700 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-700 transition-colors mt-1 md:mt-0"
+            >
+              <HomeIcon className="w-4 h-4" />
+              <span>Back to Dashboard</span>
+            </Link>
           </div>
           
           <div className="flex flex-wrap gap-3">
