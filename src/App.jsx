@@ -9,7 +9,6 @@ import getIcon from './utils/iconUtils';
 // Pages
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
-import WorkforceReports from './pages/WorkforceReports';
 import Inventory from './pages/Inventory';
 import Production from './pages/Production';
 import Workforce from './pages/Workforce';
@@ -76,7 +75,6 @@ function App() {
             <Route path="/inventory" element={<Inventory />} />
             <Route path="/production" element={<Production />} />
             <Route path="/workforce" element={<Workforce />} />
-            <Route path="/workforce/reports" element={<WorkforceReports />} />
             <Route path="/workforce/reports" element={<WorkforceReports />} />
             <Route path="/customers" element={<Customers />} />
             <Route path="/reports" element={<Reports />} />
