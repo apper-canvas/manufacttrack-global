@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
 import { motion } from 'framer-motion';
 import getIcon from '../utils/iconUtils';
@@ -26,6 +27,7 @@ function Home() {
     { id: 'reports', name: 'Reports', icon: BarChart2Icon },
   ];
 
+  const FactoryIcon = getIcon('Factory');
   const handleTabChange = (tabId) => {
     setActiveTab(tabId);
     toast.info(`Navigated to ${tabId.charAt(0).toUpperCase() + tabId.slice(1)}`);
@@ -95,6 +97,13 @@ function Home() {
           {navItems.map((item) => {
             const Icon = item.icon;
             return (
+    },
+    {
+      id: 'production',
+      label: 'Production',
+      icon: FactoryIcon,
+      description: 'Manage production orders and schedules',
+      route: '/production'
               item.id === 'inventory' ? (
                 <Link
                   key={item.id}
