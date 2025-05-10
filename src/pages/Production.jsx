@@ -44,10 +44,6 @@ function Production() {
     }
   }, [productionOrders, isLoading]);
 
-    const updatedOrders = [...productionOrders, newOrder];
-    setProductionOrders(updatedOrders);
-    saveProductionOrders(updatedOrders);
-
   const handleAddOrder = (orderData) => {
     const newOrder = {
       id: Date.now().toString(),
