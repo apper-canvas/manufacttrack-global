@@ -152,10 +152,10 @@ function Home() {
                   <Icon className="w-5 h-5" />
                   <span className="text-xs">{item.name}</span>
                 </button>
-              )
-            );
-          })}
-        </div>
+                        <Icon className="w-5 h-5" />
+                        <span className="text-xs">{item.name}</span>
+                    </button>
+                  )
       </div>
 
       {/* Main content */}
