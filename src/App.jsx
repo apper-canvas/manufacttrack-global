@@ -9,6 +9,7 @@ import getIcon from './utils/iconUtils';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Inventory from './pages/Inventory';
+import Production from './pages/Production';
 
 function App() {
   const [darkMode, setDarkMode] = useState(
@@ -67,6 +68,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/inventory" element={<Inventory />} />
+            <Route path="/production" element={<Production />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
