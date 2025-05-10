@@ -64,10 +64,9 @@ function Home() {
               <button
                 key={item.id}
                 onClick={() => item.id === 'inventory' ? null : handleTabChange(item.id)}
-                className={activeTab === item.id
-                    ? 'bg-primary text-white font-medium'
-                    : 'text-surface-600 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-700'}
-                    : 'text-surface-600 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-700' 
+                className={`flex items-center gap-2 w-full px-3 py-2 rounded-lg transition-colors ${
+                  activeTab === item.id ? 'bg-primary text-white font-medium' : 'text-surface-600 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-700'
+                }`}
               >
                 <Icon className="w-5 h-5" />
                 <span>{item.name}</span>
