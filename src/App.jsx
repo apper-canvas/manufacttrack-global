@@ -8,6 +8,7 @@ import getIcon from './utils/iconUtils';
 // Pages
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
+import Inventory from './pages/Inventory';
 
 function App() {
   const [darkMode, setDarkMode] = useState(
@@ -65,6 +66,7 @@ function App() {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/inventory" element={<Inventory />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
