@@ -96,13 +96,6 @@ function Home() {
           {navItems.map((item) => {
             const Icon = item.icon;
             return (
-    },
-    {
-      id: 'production',
-      label: 'Production',
-      icon: FactoryIcon,
-      description: 'Manage production orders and schedules',
-      route: '/production'
               item.id === 'inventory' ? (
                 <Link
                   key={item.id}
