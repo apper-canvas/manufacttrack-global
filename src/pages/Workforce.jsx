@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'react-toastify';
-import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
 import getIcon from '../utils/iconUtils';
 const UsersIcon = getIcon('Users');
