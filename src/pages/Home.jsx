@@ -63,11 +63,10 @@ function Home() {
             return (
               <button
                 key={item.id}
-                key={item.id} 
                 onClick={() => item.id === 'inventory' ? null : handleTabChange(item.id)}
-                  activeTab === item.id
+                className={activeTab === item.id
                     ? 'bg-primary text-white font-medium'
-                    : 'text-surface-600 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-700'
+                    : 'text-surface-600 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-700'}
                     : 'text-surface-600 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-700' 
               >
                 <Icon className="w-5 h-5" />
