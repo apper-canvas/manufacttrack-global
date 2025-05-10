@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
 import getIcon from '../utils/iconUtils';
 import EmployeeForm from '../components/EmployeeForm';
@@ -30,6 +31,7 @@ const Workforce = () => {
   const PhoneIcon = getIcon('Phone');
   const CalendarIcon = getIcon('Calendar');
   const TagIcon = getIcon('Tag');
+  const BarChartIcon = getIcon('BarChart');
 
   useEffect(() => {
     // Fetch employees data
@@ -138,17 +140,27 @@ const Workforce = () => {
             Manage your team members and their roles
           </p>
         </div>
-        <motion.button
-          whileTap={{ scale: 0.95 }}
-          onClick={() => {
-            setShowAddForm(true);
-            setEditingEmployee(null);
-          }}
-          className="btn btn-primary mt-4 md:mt-0 flex items-center gap-2"
-        >
-          <UserPlusIcon className="w-5 h-5" />
-          Add New Employee
-        </motion.button>
+        <div className="flex flex-col sm:flex-row gap-3 mt-4 md:mt-0">
+          <Link 
+            to="/workforce/reports" 
+            className="btn btn-outline flex items-center justify-center gap-2"
+          >
+            <BarChartIcon className="w-5 h-5" />
+            <span>View Reports</span>
+          </Link>
+          
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            onClick={() => {
+              setShowAddForm(true);
+              setEditingEmployee(null);
+            }}
+            className="btn btn-primary flex items-center gap-2"
+          >
+            <UserPlusIcon className="w-5 h-5" />
+            Add New Employee
+          </motion.button>
+        </div>
       </div>
 
       {/* Search and Filters */}

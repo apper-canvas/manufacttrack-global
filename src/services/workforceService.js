@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+import { format, parseISO, getYear, getMonth } from 'date-fns';
 
 // Initialize localStorage with mock data if empty
 const initializeEmployees = () => {
@@ -99,4 +99,78 @@ export const deleteEmployee = (id) => {
   const employees = getEmployees();
   const updatedEmployees = employees.filter(employee => employee.id !== id);
   localStorage.setItem('employees', JSON.stringify(updatedEmployees));
+};
+
+// Analytics and Reports
+
+// Get department distribution
+export const getDepartmentDistribution = () => {
+  const employees = getEmployees();
+  const departments = {};
+  
+  // Count employees by department
+  employees.forEach(employee => {
+    if (!departments[employee.department]) {
+      departments[employee.department] = 0;
+    }
+    departments[employee.department]++;
+  });
+  
+  // Format for ApexCharts
+  return Object.keys(departments).map(department => ({
+    name: department,
+    value: departments[department]
+  }));
+};
+
+// Get employee status breakdown
+export const getStatusBreakdown = () => {
+  const employees = getEmployees();
+  const statusCount = {};
+  
+  employees.forEach(employee => {
+    if (!statusCount[employee.status]) {
+      statusCount[employee.status] = 0;
+    }
+    statusCount[employee.status]++;
+  });
+  
+  return Object.keys(statusCount).map(status => ({
+    name: status.charAt(0).toUpperCase() + status.slice(1),
+    value: statusCount[status]
+  }));
+};
+
+// Get hiring trends by year/month
+export const getHiringTrends = () => {
+  const employees = getEmployees();
+  const yearlyData = {};
+  
+  employees.forEach(employee => {
+    if (employee.hireDate) {
+      const date = parseISO(employee.hireDate);
+      const year = getYear(date);
+      
+      if (!yearlyData[year]) {
+        yearlyData[year] = { year, count: 0 };
+      }
+      yearlyData[year].count++;
+    }
+  });
+  
+  return Object.values(yearlyData).sort((a, b) => a.year - b.year);
+};
+
+// Get skills frequency analysis
+export const getSkillsAnalysis = () => {
+  const employees = getEmployees();
+  const skillsCount = {};
+  
+  employees.forEach(employee => {
+    (employee.skills || []).forEach(skill => {
+      skillsCount[skill] = (skillsCount[skill] || 0) + 1;
+    });
+  });
+  
+  return Object.entries(skillsCount).map(([skill, count]) => ({ skill, count })).sort((a, b) => b.count - a.count).slice(0, 10);
 };

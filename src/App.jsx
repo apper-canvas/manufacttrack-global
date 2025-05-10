@@ -8,6 +8,7 @@ import getIcon from './utils/iconUtils';
 // Pages
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
+import WorkforceReports from './pages/WorkforceReports';
 import Inventory from './pages/Inventory';
 import Production from './pages/Production';
 import Workforce from './pages/Workforce';
@@ -28,6 +29,7 @@ function App() {
     }
     localStorage.setItem('darkMode', darkMode);
   }, [darkMode]);
+              <Route path="/workforce/reports" element={<WorkforceReports />} />
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
