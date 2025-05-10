@@ -125,16 +125,7 @@ export const deleteEmployee = (id) => {
 
 // Analytics and Reports
 
-      departments[employee.department] = 0;
-    }
-    departments[employee.department]++;
-  });
-  
-  // Format for ApexCharts
-  return Object.keys(departments).map(department => ({
-    name: department,
-    value: departments[department]
-  }));
+// Get department distribution
 };
 
 // Get employee status breakdown

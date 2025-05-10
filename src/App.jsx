@@ -21,7 +21,6 @@ function App() {
     window.matchMedia('(prefers-color-scheme: dark)').matches
   );
 
-            <Route path="/workforce/reports" element={<WorkforceReports />} />
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add('dark');
