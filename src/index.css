@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --toastify-color-light: theme('colors.surface.50');
+  --toastify-color-dark: theme('colors.surface.900');
+  --toastify-color-info: theme('colors.primary.DEFAULT');
+  --toastify-color-success: theme('colors.secondary.DEFAULT');
+  --toastify-color-warning: theme('colors.accent');
+  --toastify-color-error: theme('colors.red.500');
+}
+
+@layer base {
+  html {
+    @apply text-surface-800 dark:text-surface-100;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-surface-50 dark:bg-surface-900 min-h-screen font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-semibold tracking-tight;
+  }
+
+  h1 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+
+  h2 {
+    @apply text-2xl md:text-3xl lg:text-4xl;
+  }
+
+  h3 {
+    @apply text-xl md:text-2xl lg:text-3xl;
+  }
+
+  h4 {
+    @apply text-lg md:text-xl;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary-dark focus:ring-primary;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-white hover:bg-secondary-dark focus:ring-secondary;
+  }
+
+  .btn-outline {
+    @apply border border-surface-300 dark:border-surface-700 bg-transparent hover:bg-surface-100 dark:hover:bg-surface-800 focus:ring-surface-500;
+  }
+
+  .card {
+    @apply bg-white dark:bg-surface-800 rounded-xl shadow-card border border-surface-200 dark:border-surface-700 overflow-hidden;
+  }
+
+  .input-field {
+    @apply w-full px-3 py-2 bg-surface-100 dark:bg-surface-800 rounded-lg border border-surface-300 dark:border-surface-700 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Import react-toastify CSS */
+@import 'react-toastify/dist/ReactToastify.css';
