@@ -37,7 +37,6 @@ function Home() {
       transition: { 
         staggerChildren: 0.1 
       }
-    }
     { id: 'inventory', name: 'Inventory', icon: 'Package', path: '/inventory', disabled: false, showAlert: true },
 
   const itemVariants = {
