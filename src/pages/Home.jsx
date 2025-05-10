@@ -100,21 +100,23 @@ function Home() {
           {navItems.map((item) => {
             const Icon = item.icon;
             return (
-              item.id === 'inventory' ? (
-                <Link
-                  key={item.id}
-                  to={`/${item.id}`}
-                  className={`flex flex-col items-center gap-1 px-4 py-3 transition-colors ${
-                    activeTab === item.id
-                      ? 'text-primary border-b-2 border-primary font-medium'
-                      : 'text-surface-600 dark:text-surface-300'
-                  }`}
-                >
-                  <Icon className="w-5 h-5" />
-                  <span className="text-xs">{item.name}</span>
-                </Link>
-              ) : (
-                item.id === 'production' ? (
+              item.id === 'inventory' ? 
+                (
+                  <Link
+                    key={item.id}
+                    to={`/${item.id}`}
+                    className={`flex flex-col items-center gap-1 px-4 py-3 transition-colors ${
+                      activeTab === item.id
+                        ? 'text-primary border-b-2 border-primary font-medium'
+                        : 'text-surface-600 dark:text-surface-300'
+                    }`}
+                  >
+                    <Icon className="w-5 h-5" />
+                    <span className="text-xs">{item.name}</span>
+                  </Link>
+                ) : 
+              item.id === 'production' ? 
+                (
                   <Link
                     key={item.id}
                     to="/production"
@@ -127,7 +129,9 @@ function Home() {
                     <Icon className="w-5 h-5" />
                     <span className="text-xs">{item.name}</span>
                   </Link>
-                item.id === 'workforce' ? (
+                ) : 
+              item.id === 'workforce' ? 
+                (
                   <Link
                     key={item.id}
                     to="/workforce"
@@ -140,22 +144,24 @@ function Home() {
                     <Icon className="w-5 h-5" />
                     <span className="text-xs">{item.name}</span>
                   </Link>
-                <button
-                  key={item.id}
-                  onClick={() => handleTabChange(item.id)}
-                  className={`flex flex-col items-center gap-1 px-4 py-3 transition-colors ${
-                    activeTab === item.id
-                      ? 'text-primary border-b-2 border-primary font-medium'
-                      : 'text-surface-600 dark:text-surface-300'
-                  }`}
-                >
-                  <Icon className="w-5 h-5" />
-                  <span className="text-xs">{item.name}</span>
-                </button>
-                        <Icon className="w-5 h-5" />
-                        <span className="text-xs">{item.name}</span>
-                    </button>
-                  )
+                ) : 
+                (
+                  <button
+                    key={item.id}
+                    onClick={() => handleTabChange(item.id)}
+                    className={`flex flex-col items-center gap-1 px-4 py-3 transition-colors ${
+                      activeTab === item.id
+                        ? 'text-primary border-b-2 border-primary font-medium'
+                        : 'text-surface-600 dark:text-surface-300'
+                    }`}
+                  >
+                    <Icon className="w-5 h-5" />
+                    <span className="text-xs">{item.name}</span>
+                  </button>
+                )
+            );
+          })}
+        </div>
       </div>
 
       {/* Main content */}
