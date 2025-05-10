@@ -35,9 +35,9 @@ function Home() {
     visible: { 
       opacity: 1,
       transition: { 
-        staggerChildren: 0.1 
+        staggerChildren: 0.1
       }
-    { id: 'inventory', name: 'Inventory', icon: 'Package', path: '/inventory', disabled: false, showAlert: true },
+    },
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
