@@ -125,7 +125,8 @@ function Home() {
                     }`}
                   >
                     <Icon className="w-5 h-5" />
-                  </Link>) : (
+                    <span className="text-xs">{item.name}</span>
+                  </Link>
                 item.id === 'workforce' ? (
                   <Link
                     key={item.id}
@@ -138,8 +139,7 @@ function Home() {
                   >
                     <Icon className="w-5 h-5" />
                     <span className="text-xs">{item.name}</span>
-                    <span className="text-xs">{item.name}</span>
-                  </Link>) : (
+                  </Link>
                 <button
                   key={item.id}
                   onClick={() => handleTabChange(item.id)}
@@ -152,7 +152,7 @@ function Home() {
                   <Icon className="w-5 h-5" />
                   <span className="text-xs">{item.name}</span>
                 </button>
-              ))
+              )
             );
           })}
         </div>
