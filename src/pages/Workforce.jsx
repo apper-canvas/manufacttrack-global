@@ -116,10 +116,8 @@ const BarChart2Icon = getIcon('BarChart2');
         setEmployees(employees.filter(emp => emp.id !== id));
         toast.success('Employee removed successfully');
       } catch (error) {
-    }  
-          >
-            <BarChart2Icon className="w-5 h-5 mr-1" /> View Reports
-          </Link>
+        console.error('Error deleting employee:', error);
+      }
   };
 
   const handleExpandEmployee = (id) => {
