@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { motion } from 'framer-motion';
 import getIcon from '../utils/iconUtils';
 import MainFeature from '../components/MainFeature';
 
