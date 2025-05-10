@@ -75,6 +75,7 @@ function App() {
             <Route path="/production" element={<Production />} />
             <Route path="/workforce" element={<Workforce />} />
             <Route path="/workforce/reports" element={<WorkforceReports />} />
+            <Route path="/workforce/reports" element={<WorkforceReports />} />
             <Route path="/customers" element={<Customers />} />
             <Route path="/reports" element={<Reports />} />
             <Route path="*" element={<NotFound />} />
