@@ -64,6 +64,8 @@ function Home() {
       navigate('/workforce');
     } else if (item.id === 'customers') {
       navigate('/customers');
+    } else if (item.id === 'reports') {
+      navigate('/reports');
     } else {
       handleTabChange(item.id);
     }
@@ -152,6 +154,21 @@ function Home() {
                   <Link
                     key={item.id}
                     to="/customers"
+                    className={`flex flex-col items-center gap-1 px-4 py-3 transition-colors ${
+                      activeTab === item.id
+                        ? 'text-primary border-b-2 border-primary font-medium'
+                        : 'text-surface-600 dark:text-surface-300'
+                    }`}
+                  >
+                    <Icon className="w-5 h-5" />
+                    <span className="text-xs">{item.name}</span>
+                  </Link>
+                ) : 
+              item.id === 'reports' ? 
+                (
+                  <Link
+                    key={item.id}
+                    to="/reports"
                     className={`flex flex-col items-center gap-1 px-4 py-3 transition-colors ${
                       activeTab === item.id
                         ? 'text-primary border-b-2 border-primary font-medium'
