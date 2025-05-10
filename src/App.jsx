@@ -29,7 +29,6 @@ function App() {
     }
     localStorage.setItem('darkMode', darkMode);
   }, [darkMode]);
-              <Route path="/workforce/reports" element={<WorkforceReports />} />
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -75,6 +74,7 @@ function App() {
             <Route path="/inventory" element={<Inventory />} />
             <Route path="/production" element={<Production />} />
             <Route path="/workforce" element={<Workforce />} />
+            <Route path="/workforce/reports" element={<WorkforceReports />} />
             <Route path="/customers" element={<Customers />} />
             <Route path="/reports" element={<Reports />} />
             <Route path="*" element={<NotFound />} />
