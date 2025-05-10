@@ -113,11 +113,6 @@ function Home() {
           })}
         </div>
       </div>
-              </button>
-            );
-          })}
-        </div>
-      </div>
 
       {/* Main content */}
       <div className="flex-1 overflow-auto p-4 md:p-6 bg-surface-50 dark:bg-surface-900">
