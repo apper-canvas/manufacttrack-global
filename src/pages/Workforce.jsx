@@ -8,13 +8,14 @@ import * as workforceService from '../services/workforceService';
 
 const Workforce = () => {
   const [employees, setEmployees] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   const [filteredEmployees, setFilteredEmployees] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const BarChart2Icon = getIcon('BarChart2');
   const [editingEmployee, setEditingEmployee] = useState(null);
   const [filterDepartment, setFilterDepartment] = useState('all');
   const [filterStatus, setFilterStatus] = useState('all');
   const [expandedEmployeeId, setExpandedEmployeeId] = useState(null);
+  const [showAddForm, setShowAddForm] = useState(false);
 
   // Icons
   const UserPlusIcon = getIcon('UserPlus');

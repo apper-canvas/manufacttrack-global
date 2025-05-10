@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import WorkforceReports from './pages/WorkforceReports';
 import 'react-toastify/dist/ReactToastify.css';
 import { motion } from 'framer-motion';
 import getIcon from './utils/iconUtils';
@@ -21,6 +22,7 @@ function App() {
     window.matchMedia('(prefers-color-scheme: dark)').matches
   );
 
+            <Route path="/workforce/reports" element={<WorkforceReports />} />
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add('dark');

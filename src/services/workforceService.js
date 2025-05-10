@@ -49,6 +49,28 @@ const initializeEmployees = () => {
         hireDate: '2022-01-05',
         status: 'active',
         skills: ['Inventory Management', 'Supply Chain', 'Data Entry']
+      },
+      {
+        id: '5',
+        name: 'Robert Williams',
+        position: 'Maintenance Technician',
+        department: 'Maintenance',
+        email: 'rwilliams@example.com',
+        phone: '555-234-5678',
+        hireDate: '2019-06-12',
+        status: 'on leave',
+        skills: ['Electrical Systems', 'Mechanical Repair', 'Preventive Maintenance']
+      },
+      {
+        id: '6',
+        name: 'Emily Davis',
+        position: 'HR Coordinator',
+        department: 'Human Resources',
+        email: 'edavis@example.com',
+        phone: '555-345-6789',
+        hireDate: '2022-03-18',
+        status: 'active',
+        skills: ['Inventory Management', 'Supply Chain', 'Data Entry']
       }
     ];
     localStorage.setItem('employees', JSON.stringify(initialEmployees));
@@ -103,14 +125,6 @@ export const deleteEmployee = (id) => {
 
 // Analytics and Reports
 
-// Get department distribution
-export const getDepartmentDistribution = () => {
-  const employees = getEmployees();
-  const departments = {};
-  
-  // Count employees by department
-  employees.forEach(employee => {
-    if (!departments[employee.department]) {
       departments[employee.department] = 0;
     }
     departments[employee.department]++;
@@ -173,6 +187,103 @@ export const getSkillsAnalysis = () => {
   });
   
   return Object.entries(skillsCount).map(([skill, count]) => ({ skill, count })).sort((a, b) => b.count - a.count).slice(0, 10);
+};
+
+// Get department distribution
+export const getDepartmentDistribution = () => {
+  const employees = getEmployees();
+  const departments = {};
+  
+  // Count employees by department
+  employees.forEach(employee => {
+    if (!departments[employee.department]) {
+      departments[employee.department] = 0;
+    }
+    departments[employee.department]++;
+  });
+  
+  // Format for ApexCharts
+  return Object.keys(departments).map(department => ({
+    name: department,
+    value: departments[department]
+  }));
+};
+
+// Get monthly hiring data for current year
+export const getMonthlyHiringData = (year = new Date().getFullYear()) => {
+  const employees = getEmployees();
+  const months = Array(12).fill(0);
+  
+  employees.forEach(employee => {
+    if (employee.hireDate) {
+      const date = parseISO(employee.hireDate);
+      if (getYear(date) === year) {
+        const month = getMonth(date);
+        months[month]++;
+      }
+    }
+  });
+  
+  return {
+    year,
+    data: months
+  };
+};
+
+// Calculate retention rate
+export const getRetentionRate = () => {
+  const employees = getEmployees();
+  const currentYear = new Date().getFullYear();
+  const lastYear = currentYear - 1;
+  
+  const activeEmployees = employees.filter(e => e.status === 'active').length;
+  const hiredBeforeLastYear = employees.filter(e => {
+    if (!e.hireDate) return false;
+    const hireYear = getYear(parseISO(e.hireDate));
+    return hireYear < lastYear;
+  }).length;
+  
+  // If no employees were hired before last year, return 100%
+  if (hiredBeforeLastYear === 0) return 100;
+  
+  // Calculate retention rate for employees hired before last year
+  const stillEmployed = employees.filter(e => {
+    if (!e.hireDate || e.status === 'terminated') return false;
+    const hireYear = getYear(parseISO(e.hireDate));
+    return hireYear < lastYear;
+  }).length;
+  
+  return Math.round((stillEmployed / hiredBeforeLastYear) * 100);
+};
+
+// Get department efficiency report
+export const getDepartmentEfficiency = () => {
+  // This would typically be calculated from actual metrics
+  // For demo purposes, we'll return mock data
+  const departments = ['Production', 'Quality Control', 'Maintenance', 'Inventory', 'Human Resources'];
+  
+  return departments.map(dept => ({
+    department: dept,
+    efficiency: Math.floor(Math.random() * 30) + 70, // Random efficiency between 70-100%
+    target: 90
+  }));
+};
+
+// Calculate average tenure in years
+export const getAverageTenure = () => {
+  const employees = getEmployees();
+  const currentDate = new Date();
+  
+  const employeesWithHireDate = employees.filter(e => e.hireDate);
+  if (employeesWithHireDate.length === 0) return 0;
+  
+  const totalYears = employeesWithHireDate.reduce((sum, emp) => {
+    const hireDate = parseISO(emp.hireDate);
+    const yearDiff = (currentDate - hireDate) / (1000 * 60 * 60 * 24 * 365);
+    return sum + yearDiff;
+  }, 0);
+  
+  return (totalYears / employeesWithHireDate.length).toFixed(1);
 };
 
 // End of workforce service module
