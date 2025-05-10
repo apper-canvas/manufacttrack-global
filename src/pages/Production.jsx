@@ -6,6 +6,7 @@ import { format } from 'date-fns';
 import getIcon from '../utils/iconUtils';
 import ProductionOrderForm from '../components/ProductionOrderForm';
 import { getProductionOrders, saveProductionOrders } from '../services/productionService';
+import EditProductionModal from '../components/EditProductionModal';
 import ProductionStatusBadge from '../components/ProductionStatusBadge';
 
 function Production() {
@@ -13,6 +14,7 @@ function Production() {
   const [isLoading, setIsLoading] = useState(true);
   const [showAddForm, setShowAddForm] = useState(false);
   const [editingOrder, setEditingOrder] = useState(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedTab, setSelectedTab] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -73,6 +75,7 @@ function Production() {
     setProductionOrders(updatedOrders);
     saveProductionOrders(updatedOrders);
 
+    setIsEditModalOpen(false);
     setEditingOrder(null);
     toast.success('Production order updated successfully!');
   };
@@ -202,7 +205,7 @@ function Production() {
       </div>
 
       {/* Add/Edit Form */}
-      {(showAddForm || editingOrder) && (
+      {showAddForm && (
         <div className="mb-6 card p-4">
           <h2 className="text-lg font-semibold mb-4">
             {editingOrder ? 'Edit Production Order' : 'Add New Production Order'}
@@ -272,7 +275,7 @@ function Production() {
                   </p>
                 </div>
                 <div className="flex gap-2 sm:self-end">
-                  <button className="btn btn-outline py-1 px-3" onClick={() => setEditingOrder(order)}>
+                  <button className="btn btn-outline py-1 px-3" onClick={() => { setEditingOrder(order); setIsEditModalOpen(true); }}>
                     <EditIcon className="w-4 h-4" />
                   </button>
                   <button className="btn btn-outline py-1 px-3 text-red-500" onClick={() => handleDeleteOrder(order.id)}>
@@ -284,6 +287,17 @@ function Production() {
           ))}
         </motion.div>
       )}
+
+      {/* Edit Modal */}
+      <EditProductionModal 
+        isOpen={isEditModalOpen} 
+        onClose={() => {
+          setIsEditModalOpen(false);
+          setEditingOrder(null);
+        }}
+        order={editingOrder}
+        onSubmit={(data) => handleUpdateOrder(editingOrder?.id, data)}
+      />
     </div>
   );
 }
