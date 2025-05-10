@@ -29,17 +29,12 @@ function Production() {
   useEffect(() => {
     setIsLoading(true);
     
-    const loadOrders = async () => {
-      const orders = await getProductionOrders();
+    setTimeout(() => {
+      const orders = getProductionOrders();
       setProductionOrders(orders);
       setIsLoading(false);
-        setProductionOrders(JSON.parse(storedOrders));
-    
-    loadOrders();
-  }, []);
-
-      setIsLoading(false);
     }, 500); // Simulate loading for demo purposes
+    
   }, []);
 
   // Save production orders to localStorage whenever they change
