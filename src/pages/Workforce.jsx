@@ -105,17 +105,9 @@ const BarChart2Icon = getIcon('BarChart2');
       toast.success('Employee updated successfully');
     } catch (error) {
       console.error('Error updating employee:', error);
-      <>
-          <h1 className="text-2xl font-bold flex items-center gap-2 mb-1">
-            <UsersIcon className="w-6 h-6 text-primary" /> 
-            Workforce
-          </h1>
-          <h1 className="text-base text-surface-600 dark:text-surface-400">
-            Manage employees and teams
-            <span className="text-sm ml-1">
-              ({employees.length} total)
-            </span>
-          </>
+      toast.error('Failed to update employee');
+    }
+  };
 
   const handleDeleteEmployee = (id) => {
     if (window.confirm('Are you sure you want to delete this employee?')) {
@@ -124,14 +116,7 @@ const BarChart2Icon = getIcon('BarChart2');
         setEmployees(employees.filter(emp => emp.id !== id));
         toast.success('Employee removed successfully');
       } catch (error) {
-        console.error('Error deleting employee:', error);
-        toast.error('Failed to delete employee');
-      }
-    }
-          
-          <Link 
-            to="/workforce/reports" 
-            className="btn btn-outline flex items-center justify-center"
+    }  
           >
             <BarChart2Icon className="w-5 h-5 mr-1" /> View Reports
           </Link>
