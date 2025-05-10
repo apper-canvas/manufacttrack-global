@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { Link, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import getIcon from '../utils/iconUtils';
@@ -7,6 +7,7 @@ import MainFeature from '../components/MainFeature';
 
 function Home() {
   const [activeTab, setActiveTab] = useState('dashboard');
+  const navigate = useNavigate();
 
   // Icon components
   const LayoutDashboardIcon = getIcon('LayoutDashboard');
@@ -38,7 +39,7 @@ function Home() {
         staggerChildren: 0.1 
       }
     }
-  };
+    { id: 'inventory', name: 'Inventory', icon: 'Package', path: '/inventory', disabled: false, showAlert: true },
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
@@ -53,6 +54,15 @@ function Home() {
     }
   };
 
+  // Handle tab navigation
+  const handleTabNavigation = (item) => {
+    if (item.id === 'inventory') {
+      navigate('/inventory');
+    } else {
+      handleTabChange(item.id);
+    }
+  };
+  
   return (
     <div className="flex flex-col md:flex-row h-[calc(100vh-116px)]">
       {/* Sidebar navigation - hidden on mobile, visible on md screens */}
@@ -64,17 +74,18 @@ function Home() {
               <button
                 key={item.id}
                 onClick={() => item.id === 'inventory' ? null : handleTabChange(item.id)}
-                className={`flex items-center gap-2 w-full px-3 py-2 rounded-lg transition-colors ${
+          <div className="space-y-2 sticky top-20">
                   activeTab === item.id ? 'bg-primary text-white font-medium' : 'text-surface-600 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-700'
                 }`}
               >
-                <Icon className="w-5 h-5" />
-                <span>{item.name}</span>
-              </button>
-            );
-          })}
-        </div>
-      </aside>
+                <button
+                  key={item.id}
+                  onClick={() => handleTabNavigation(item)}
+                  className={
+                    activeTab === item.id
+                      ? 'bg-primary text-white font-medium w-full flex items-center gap-3 p-2 rounded-lg transition-colors'
+                      : 'text-surface-600 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-700 w-full flex items-center gap-3 p-2 rounded-lg transition-colors'
+                  }
 
       {/* Mobile navigation - visible on mobile, hidden on md screens */}
       <div className="md:hidden overflow-x-auto scrollbar-hide bg-white dark:bg-surface-800 border-b border-surface-200 dark:border-surface-700">
